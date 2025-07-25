@@ -12,18 +12,13 @@ public class UserDTO {
 	private String farmCrops;
 	private String farmArea;
 	private String farmImg;
+	
 	// User
 	private String userPhone;
-	private String userPw;
+//	private String userPw;
 	private String userName;
-	// Greenhouse
-	
-	// Cctv
-	// ImageDTO
-
-	// ClassificationDTO
-	// InsectDTO
-	// FeedbackDTO
-	// ReportDTO
 
 }
+
+
+// 로그인하면 농장만 뜨지않나?
