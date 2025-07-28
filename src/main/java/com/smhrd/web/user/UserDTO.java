@@ -15,10 +15,7 @@ public class UserDTO {
 	
 	// User
 	private String userPhone;
-//	private String userPw;
 	private String userName;
 
 }
 
-
-// 로그인하면 농장만 뜨지않나?

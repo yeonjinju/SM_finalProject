@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +18,7 @@ public class HomeController {
     @Autowired
     private HomeService homeService;
 
-    // 홈 화면 - 간단 메시지 반환
+    @Operation(summary = "홈 화면")
     @GetMapping("/")
     public Map<String, Object> home() {
         Map<String, Object> response = new HashMap<>();
@@ -24,7 +26,7 @@ public class HomeController {
         return response;
     }
 
-    // 로그인 처리 - 성공 시 사용자 정보 JSON 반환, 실패 시 401 에러 반환
+	@Operation(summary = "로그인 처리 - 성공 시 사용자 정보 JSON 반환, 실패 시 401 에러 반환")
     @PostMapping("/loginCheck")
     public ResponseEntity<?> loginCheck(@RequestParam("id") String id,
                                         @RequestParam("pw") String pw,
@@ -55,7 +57,7 @@ public class HomeController {
         }
     }
 
-    // 사용자 페이지 접근 권한 체크용 API
+	@Operation(summary = "사용자 페이지 접근 권한 체크")
     @GetMapping("/userPage")
     public ResponseEntity<?> userPage(HttpSession session) {
         String role = (String) session.getAttribute("role");
@@ -68,7 +70,7 @@ public class HomeController {
         }
     }
 
-    // 관리자 페이지 접근 권한 체크용 API
+	@Operation(summary = "관리자 페이지 접근 권한 체크")
     @GetMapping("/adminPage")
     public ResponseEntity<?> adminPage(HttpSession session) {
         String role = (String) session.getAttribute("role");
