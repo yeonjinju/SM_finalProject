@@ -1,9 +1,13 @@
 package com.smhrd.web.farm.alert;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.smhrd.web.farm.alert.dto.AlertDTO;
+import com.smhrd.web.farm.alert.dto.AlertDetailDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -13,6 +17,13 @@ public class AlertController {
 
     @Autowired
     private AlertService alertService;
+    
+    @GetMapping("/detail/{anlsIdx}")
+    public ResponseEntity<AlertDetailDTO> getAlertDetail(@PathVariable Long anlsIdx) {
+        AlertDetailDTO detail = alertService.getFullAlertDetail(anlsIdx);
+        return ResponseEntity.ok(detail);
+    }
+
 
     @Operation(summary = "알림 목록 조회")
     @GetMapping("/list/{farmIdx}")
@@ -21,10 +32,17 @@ public class AlertController {
         return ResponseEntity.ok(alerts);
     }
 
-    @Operation(summary = "알림 읽음 처리")
-    @PostMapping("/read/{anlsIdx}")
-    public ResponseEntity<String> markAlertAsRead(@PathVariable Long anlsIdx) {
-        alertService.markAsRead(anlsIdx);
-        return ResponseEntity.ok("알림 읽음 처리 완료");
+    @Operation(summary = "알림 읽음 처리 후 상세 조회")
+    @GetMapping("/read-and-detail/{anlsIdx}")
+    public ResponseEntity<AlertDTO> readAndGetAlertDetail(@PathVariable Long anlsIdx) {
+        alertService.markAsRead(anlsIdx); // 읽음 처리 먼저 하고
+        AlertDTO alertDetail = alertService.getAlertDetail(anlsIdx); // 상세조회
+
+        if (alertDetail != null) {
+            return ResponseEntity.ok(alertDetail);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 }
