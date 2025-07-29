@@ -26,7 +26,7 @@ public class HomeController {
         return response;
     }
 
-	@Operation(summary = "로그인 처리 - 성공 시 사용자 정보 JSON 반환, 실패 시 401 에러 반환")
+	@Operation(summary = "로그인 처리 - 성공 시 사용자 정보")
     @PostMapping("/loginCheck")
     public ResponseEntity<?> loginCheck(@RequestParam("id") String id,
                                         @RequestParam("pw") String pw,

@@ -18,20 +18,14 @@ public class UserController {
 	@Autowired
     private UserService userService;
 
-	@Operation(summary = "로그인 유저 핸드폰번호로 농장 리스트 조회")
+	@Operation(summary = "유저 핸드폰번호로 농장 리스트 조회")
 	@GetMapping("/farms")
-	public ResponseEntity<List<FarmDetailDTO>> getUserFarms(@RequestParam String userPhone) {
-	    List<FarmDetailDTO> farms = userService.getFarmsByUserPhone(userPhone);
+	public ResponseEntity<List<UserDTO>> getUserFarms(@RequestParam String userPhone) {
+	    System.out.println("조회 유저폰: " + userPhone);
+	    List<UserDTO> farms = userService.getFarmsByUserPhone(userPhone);
 	    return ResponseEntity.ok(farms);
 	}
 
-//    @Operation(summary = "farmIdx로 농장 상세 정보 조회")
-//    @GetMapping("/farms/{farmIdx}/detail")
-//    public ResponseEntity<FarmDetailResponseDTO> getFarmDetail(@PathVariable Long farmIdx) {
-//        FarmDetailResponseDTO detail = userService.getFarmDetail(farmIdx);
-//        return ResponseEntity.ok(detail);
-//    }
-    
 
 
     

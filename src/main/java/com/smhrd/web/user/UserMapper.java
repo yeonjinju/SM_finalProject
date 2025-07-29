@@ -8,9 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
 
-    List<FarmDetailDTO> selectFarmsByUserPhone(String userPhone);
-
-    FarmDetailDTO selectFarmByFarmIdx(Long farmIdx);
+    List<UserDTO> selectFarmsByUserPhone(String userPhone);
+    UserDTO selectFarmByFarmIdx(Long farmIdx);
     
 
 

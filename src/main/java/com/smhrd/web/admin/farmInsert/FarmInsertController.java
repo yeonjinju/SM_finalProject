@@ -1,4 +1,4 @@
-package com.smhrd.web.admin;
+package com.smhrd.web.admin.farmInsert;
 
 import java.io.File;
 import java.io.IOException;

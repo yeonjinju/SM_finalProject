@@ -13,7 +13,7 @@ public class UserService {
     private UserMapper userMapper;
 
     // 유저 휴대폰번호로 농장 리스트 조회
-    public List<FarmDetailDTO> getFarmsByUserPhone(String userPhone) {
+    public List<UserDTO> getFarmsByUserPhone(String userPhone) {
         return userMapper.selectFarmsByUserPhone(userPhone);
     }
 
