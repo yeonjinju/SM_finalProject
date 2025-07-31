@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.smhrd.web.farm.alert.dto.AlertDTO;
 import com.smhrd.web.farm.alert.dto.AlertDetailDTO;
+import com.smhrd.web.farm.alert.dto.FeedbackDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -17,13 +18,6 @@ public class AlertController {
 
     @Autowired
     private AlertService alertService;
-    
-    @GetMapping("/detail/{anlsIdx}")
-    public ResponseEntity<AlertDetailDTO> getAlertDetail(@PathVariable Long anlsIdx) {
-        AlertDetailDTO detail = alertService.getFullAlertDetail(anlsIdx);
-        return ResponseEntity.ok(detail);
-    }
-
 
     @Operation(summary = "알림 목록 조회")
     @GetMapping("/list/{farmIdx}")
@@ -44,5 +38,20 @@ public class AlertController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    @Operation(summary = "알림 눌렀을떄 해충 정보 상세 (구역확인, 동영상확인, GPT확인)")
+    @GetMapping("/detail/{anlsIdx}")
+    public ResponseEntity<AlertDetailDTO> getAlertDetail(@PathVariable Long anlsIdx) {
+        AlertDetailDTO detail = alertService.getFullAlertDetail(anlsIdx);
+        return ResponseEntity.ok(detail);
+    }
+    
+    @Operation(summary = "피드백 등록")
+    @PostMapping("/feedback")
+    public ResponseEntity<String> insertFeedback(@RequestBody FeedbackDTO feedback) {
+        alertService.insertFeedback(feedback);
+        return ResponseEntity.ok("피드백이 성공적으로 등록되었습니다.");
+    }
+
 
 }
