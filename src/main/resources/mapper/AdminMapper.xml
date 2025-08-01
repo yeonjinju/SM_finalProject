@@ -58,5 +58,18 @@
 	    DELETE FROM qc_farm WHERE farm_idx = #{farmIdx}
 	</delete>
 	
+	<!-- 회원정보 수정 -->
+	<update id="updateUserInfo" parameterType="com.smhrd.web.admin.AdminDTO">
+	    UPDATE qc_user
+	    SET user_name = #{userName},
+	        user_pw = #{userPw}
+	    WHERE user_phone = #{userPhone}
+	</update>
+	
+	<!-- 회원 삭제 -->
+	<delete id="deleteUser" parameterType="String">
+	    DELETE FROM qc_user WHERE user_phone = #{userPhone}
+	</delete>
+
 
 </mapper>

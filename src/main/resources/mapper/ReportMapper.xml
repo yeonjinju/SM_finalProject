@@ -12,24 +12,27 @@
         ORDER BY CREATED_AT DESC
     </select>
 
-    <select id="findDailyReports" resultType="com.smhrd.web.report.ReportDTO">
+    <select id="findDailyReports" parameterType="map" resultType="com.smhrd.web.report.ReportDTO">
         SELECT * FROM QC_REPORT
-        WHERE TO_CHAR(CREATED_AT, 'YYYY') = #{year}
+        WHERE FARM_IDX = #{farmIdx}
+          AND TO_CHAR(CREATED_AT, 'YYYY') = #{year}
           AND TO_CHAR(CREATED_AT, 'MM') = #{month}
           AND TO_CHAR(CREATED_AT, 'DD') = #{day}
         ORDER BY CREATED_AT DESC
     </select>
 
-    <select id="findMonthlyReports" resultType="com.smhrd.web.report.ReportDTO">
+    <select id="findMonthlyReports" parameterType="map" resultType="com.smhrd.web.report.ReportDTO">
         SELECT * FROM QC_REPORT
-        WHERE TO_CHAR(CREATED_AT, 'YYYY') = #{year}
+        WHERE FARM_IDX = #{farmIdx}
+          AND TO_CHAR(CREATED_AT, 'YYYY') = #{year}
           AND TO_CHAR(CREATED_AT, 'MM') = #{month}
         ORDER BY CREATED_AT DESC
     </select>
 
-    <select id="findYearlyReports" resultType="com.smhrd.web.report.ReportDTO">
+    <select id="findYearlyReports" parameterType="map" resultType="com.smhrd.web.report.ReportDTO">
         SELECT * FROM QC_REPORT
-        WHERE TO_CHAR(CREATED_AT, 'YYYY') = #{year}
+        WHERE FARM_IDX = #{farmIdx}
+          AND TO_CHAR(CREATED_AT, 'YYYY') = #{year}
         ORDER BY CREATED_AT DESC
     </select>
 
