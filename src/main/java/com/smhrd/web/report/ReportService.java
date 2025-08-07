@@ -2,6 +2,7 @@ package com.smhrd.web.report;
 
 import com.smhrd.web.report.dto.DailyStatsDTO;
 import com.smhrd.web.report.dto.InsectMonthlyPredictionDTO;
+import com.smhrd.web.report.dto.MonthCountDTO;
 import com.smhrd.web.report.dto.MonthlyStatsDTO;
 import com.smhrd.web.report.dto.SeasonalPredictionDTO;
 import com.smhrd.web.report.dto.WeekCountDTO;
@@ -80,6 +81,7 @@ public class ReportService {
     }
 
 
+ // 연간 통계 조회
     public YearlyStatsDTO getYearlyStats(Long farmIdx, String year) {
         YearlyStatsDTO dto = new YearlyStatsDTO();
 
@@ -87,19 +89,19 @@ public class ReportService {
         dto.setTotalCount(reportMapper.getYearlyTotalDetectionCount(farmIdx, year));
         dto.setInsectTypeCount(reportMapper.getYearlyInsectTypeCount(farmIdx, year));
         dto.setTopZone(reportMapper.getYearlyTopDetectionZone(farmIdx, year));
-        dto.setMonthlyStats(reportMapper.getYearlyMonthlyStats(farmIdx, year));
-        dto.setInsectDistribution(reportMapper.getYearlyInsectDistribution(farmIdx, year));
-        dto.setDetails(reportMapper.getYearlyDetectionDetails(farmIdx, year));
+  
         
+        // 월별 통계 설정
+        List<MonthCountDTO> monthlyStats = reportMapper.getYearlyMonthlyStats(farmIdx, year);
+        dto.setMonthlyStats(monthlyStats);
+//        dto.setMonthlyStats(reportMapper.getYearlyMonthlyStats(farmIdx, year));
+//       dto.setInsectDistribution(reportMapper.getYearlyInsectDistribution(farmIdx, year));
+//        dto.setDetails(reportMapper.getYearlyDetectionDetails(farmIdx, year));
+
         // 계절별 해충 예측 설정
         List<SeasonalPredictionDTO> seasonalPredictions = reportMapper.getYearlySeasonalPrediction(farmIdx, year, String.valueOf(Integer.parseInt(year) + 1));
         dto.setPredictedInsectTrends(seasonalPredictions);
 
         return dto;
     }
-
-
-
-
 }
-

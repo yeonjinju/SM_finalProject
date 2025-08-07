@@ -28,7 +28,7 @@ public interface ReportMapper {
     List<DetectionDetailDTO> getMonthlyDetectionDetails(@Param("farmIdx") Long farmIdx, @Param("month") String month);
 
 
-    // 연별 통계
+ // 연간 통계
     Integer getYearlyTotalDetectionCount(@Param("farmIdx") Long farmIdx, @Param("year") String year);
     Integer getYearlyInsectTypeCount(@Param("farmIdx") Long farmIdx, @Param("year") String year);
     String getYearlyTopDetectionZone(@Param("farmIdx") Long farmIdx, @Param("year") String year);
@@ -39,12 +39,7 @@ public interface ReportMapper {
     // 4종 해충 연도별 탐지수
     List<InsectYearlyCountDTO> getYearlyInsectTrends(@Param("farmIdx") Long farmIdx, @Param("year") String year);
 
-    // 4종 해충 연도별 탐지수
-    List<InsectYearlyCountDTO> getYearlyInsectTrends(@Param("farmIdx") Long farmIdx, 
-                                                      @Param("year") String year, 
-                                                      @Param("prevYear") String prevYear);
-
-    // 계절별 해충 예측 추가
+    // 계절별 해충 예측
     List<SeasonalPredictionDTO> getYearlySeasonalPrediction(
         @Param("farmIdx") Long farmIdx, 
         @Param("year") String year, 
