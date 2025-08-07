@@ -9,6 +9,7 @@ public class YearlyStatsDTO {
     private int totalCount;
     private int insectTypeCount;
     private String topZone;
+    private List<SeasonInsectStatsDTO> seasonalPrediction;
     private List<InsectYearlyCountDTO> predictedInsectTrends;
     private List<MonthCountDTO> monthlyStats;
     private List<InsectDistributionDTO> insectDistribution;
